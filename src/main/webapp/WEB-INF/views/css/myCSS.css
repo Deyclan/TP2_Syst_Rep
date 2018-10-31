@@ -1,0 +1,53 @@
+/* Required for full background image */
+html,
+body,
+header,
+.view {
+    height: 100%;
+}
+
+@media (max-width: 740px) {
+    header {
+        height: 100vh;
+    }
+}
+
+.top-nav-collapse {
+    background-color: #78909c !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+}
+
+.navbar-brand{
+    font-size: 25px !important;
+    text-shadow: 2px 2px 2px #000000 !important;
+}
+
+@media (max-width: 768px) {
+    .navbar:not(.top-nav-collapse) {
+        background: #78909c !important;
+    }
+}
+
+h2 {
+    color: #1d7c73;
+    letter-spacing: 8px;
+    font-size: 6rem;
+}
+
+h5 {
+    letter-spacing: 3px;
+    font-size: 2.5rem;
+
+}
+
+.hr-light {
+    border-top: 3px solid #fff;
+    width: 80px;
+}
+
+.jarallax {
+    min-height: auto;
+}
