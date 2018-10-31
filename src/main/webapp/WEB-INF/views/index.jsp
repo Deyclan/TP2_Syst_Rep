@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="resources/css/mdb.min.css">
   <link rel="stylesheet" href="resources/css/myCSS.css">
   <link rel="stylesheet" href="resources/css/myCSS.css">
-    <title>TravelExpress : Site de covoiturage</title>
+  <title>TravelExpress : Site de covoiturage</title>
 </head>
 
 <body>

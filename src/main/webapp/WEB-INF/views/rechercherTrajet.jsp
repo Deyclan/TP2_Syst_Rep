@@ -24,7 +24,7 @@
                 <div class="row mt-5 justify-content-center">
                     <div class="col-md-6 col-xl-5 mb-4">
                         <!--Form-->
-                        <form class="card wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; background-color:rgba(0, 0, 0, 0.2);"
+                        <form class="card wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; background-color:rgba(0, 0, 0, 0.5);"
                               name='identification' method="post" action="listerTrajet">
                             <div class="card-body">
                                 <!--Header-->

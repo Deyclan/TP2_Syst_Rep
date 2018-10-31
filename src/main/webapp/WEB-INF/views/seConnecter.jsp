@@ -20,7 +20,7 @@
                 <div class="row mt-5 justify-content-center">
                     <div class="col-md-6 col-xl-5 mb-4">
                         <!--Form-->
-                        <form class="card wow fadeInDown" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInDown; animation-delay: 0.3s; background-color:rgba(0, 0, 0, 0.2);"
+                        <form class="card wow fadeInDown" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInDown; animation-delay: 0.3s; background-color:rgba(0, 0, 0, 0.5);"
                               name='connexion' method="post" action="connexion">
                             <div class="card-body">
                                 <!--Header-->
