@@ -3,6 +3,7 @@ package com.brandonjulie.travelexpress.entities;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.Collection;
 
 @Entity
 @Table(name = "travel", schema = "travel_express", catalog = "")
@@ -17,6 +18,9 @@ public class TravelEntity {
     private Byte phone;
     private Byte luggage;
     private Integer state;
+    private int idOfferer;
+    private Collection<ReservationEntity> reservationsById;
+    private UserEntity userByIdOfferer;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -152,5 +156,34 @@ public class TravelEntity {
         result = 31 * result + (luggage != null ? luggage.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "id_offerer", nullable = false)
+    public int getIdOfferer() {
+        return idOfferer;
+    }
+
+    public void setIdOfferer(int idOfferer) {
+        this.idOfferer = idOfferer;
+    }
+
+    @OneToMany(mappedBy = "travelByIdTravel")
+    public Collection<ReservationEntity> getReservationsById() {
+        return reservationsById;
+    }
+
+    public void setReservationsById(Collection<ReservationEntity> reservationsById) {
+        this.reservationsById = reservationsById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_offerer", referencedColumnName = "id", nullable = false)
+    public UserEntity getUserByIdOfferer() {
+        return userByIdOfferer;
+    }
+
+    public void setUserByIdOfferer(UserEntity userByIdOfferer) {
+        this.userByIdOfferer = userByIdOfferer;
     }
 }

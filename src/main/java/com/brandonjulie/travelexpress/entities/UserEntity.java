@@ -2,6 +2,7 @@ package com.brandonjulie.travelexpress.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Collection;
 
 @Entity
 @Table(name = "user", schema = "travel_express", catalog = "")
@@ -13,6 +14,9 @@ public class UserEntity {
     private String email;
     private String phone;
     private BigDecimal rating;
+    private Collection<ReservationEntity> reservationsById;
+    private Collection<TravelEntity> travelsById;
+    private String password;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -84,6 +88,16 @@ public class UserEntity {
         this.rating = rating;
     }
 
+    @Basic
+    @Column(name = "password", nullable = false, length = 30)
+    public String getPassword(){
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -112,5 +126,23 @@ public class UserEntity {
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (rating != null ? rating.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "userByIdReserver")
+    public Collection<ReservationEntity> getReservationsById() {
+        return reservationsById;
+    }
+
+    public void setReservationsById(Collection<ReservationEntity> reservationsById) {
+        this.reservationsById = reservationsById;
+    }
+
+    @OneToMany(mappedBy = "userByIdOfferer")
+    public Collection<TravelEntity> getTravelsById() {
+        return travelsById;
+    }
+
+    public void setTravelsById(Collection<TravelEntity> travelsById) {
+        this.travelsById = travelsById;
     }
 }
