@@ -4,6 +4,7 @@ create database if not exists travel_express;
 create table if not exists travel_express.user(
 	id int primary key not null auto_increment,
     username VARCHAR(20),
+    password VARCHAR(30),
     name varchar(20),
     firstname varchar(20),
     email varchar(100),

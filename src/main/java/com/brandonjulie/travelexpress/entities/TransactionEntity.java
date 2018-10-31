@@ -2,6 +2,7 @@ package com.brandonjulie.travelexpress.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Collection;
 
 @Entity
 @Table(name = "transaction", schema = "travel_express", catalog = "")
@@ -10,6 +11,7 @@ public class TransactionEntity {
     private BigDecimal amont;
     private int idPayer;
     private int idReceiver;
+    private Collection<ReservationEntity> reservationsById;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -73,5 +75,14 @@ public class TransactionEntity {
         result = 31 * result + idPayer;
         result = 31 * result + idReceiver;
         return result;
+    }
+
+    @OneToMany(mappedBy = "transactionByIdTransaction")
+    public Collection<ReservationEntity> getReservationsById() {
+        return reservationsById;
+    }
+
+    public void setReservationsById(Collection<ReservationEntity> reservationsById) {
+        this.reservationsById = reservationsById;
     }
 }
