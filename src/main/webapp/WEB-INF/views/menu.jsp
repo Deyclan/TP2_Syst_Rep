@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% String username = ""; //request.getSession().getAttribute("username").toString(); %>
+<% String username = "martin"; // TODO: request.getSession().getAttribute("username").toString(); %>
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
     <div class="container">

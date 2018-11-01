@@ -62,16 +62,16 @@ public class SessionController {
 
         /*------------------------------------------ PROFIL ------------------------------------------*/
 
-    @RequestMapping(value = "profile", method = RequestMethod.GET)
+    @RequestMapping(value = "profil", method = RequestMethod.GET)
     public ModelAndView showProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return new ModelAndView("profile");
+        return new ModelAndView("profil");
     }
 
         /*------------------------------------------ DECONNEXION ------------------------------------------*/
 
     @RequestMapping(value = "seDeconnecter", method = RequestMethod.GET)
     public ModelAndView deconnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        // TODO: gérer la déconnexion
+       request.setAttribute("username", "");
         return new ModelAndView("index");
     }
 }
