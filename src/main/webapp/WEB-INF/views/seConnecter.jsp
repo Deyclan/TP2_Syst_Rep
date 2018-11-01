@@ -14,7 +14,7 @@
 
 <header>
     <jsp:include page="menu.jsp"/>
-    <div class="view" style="background-image: url('resources/image/coffee.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="view" style="background-image: url('resources/img/login.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
             <div class="container">
                 <div class="row mt-5 justify-content-center">
@@ -31,19 +31,19 @@
                                 <!--Body-->
                                 <div class="md-form">
                                     <label for="user" class="active white-text"> Identifiant </label>
-                                    <INPUT type="text" class="form-control amber-text" name="username" value="" id="user">
+                                    <INPUT type="text" class="form-control text-info" name="username" value="" id="user">
                                 </div>
                                 <div class="md-form">
                                     <label for="pwd" class="active white-text"> Mot de passe </label>
-                                    <INPUT type="password" class="form-control amber-text" name="password" id="pwd">
+                                    <INPUT type="password" class="form-control text-info" name="password" id="pwd">
                                 </div>
                                 <div class="text-center mt-4">
-                                    <button type="submit" name="bt" class="btn btn-default text-center">Se connecter</button>
-                                    <button type="reset" name="bt" class="btn btn-default text-center">RAZ</button>
+                                    <button type="submit" name="bt" class="btn btn-info text-center">Se connecter</button>
+                                    <button type="reset" name="bt" class="btn btn-info text-center">RAZ</button>
                                     <hr class="hr-light mb-3 mt-4">
                                 </div>
                                 <div class="md-form">
-                                    <label class="active white-text"> Pas encore membre? <a class="nav-link amber-text" href="sInscrire"> Inscrivez-vous </a> </label>
+                                    <span class="white-text"> Pas encore membre? <a class="text-info" href="sInscrire"> Inscrivez-vous </a> </span>
                                 </div>
                             </div>
                         </form>

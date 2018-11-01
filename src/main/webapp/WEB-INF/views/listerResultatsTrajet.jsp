@@ -16,7 +16,7 @@
 
 <header>
     <jsp:include page="menu.jsp"/>
-    <div class="view" style="background-image: url('resources/img/covoit.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="view" style="background-image: url('resources/img/bg.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
             <div class="container">
                 <div class="row mt-5 justify-content-center">
@@ -41,8 +41,7 @@
                                         <td class="col">${trajet.date}</td>
                                         <td class="col">${trajet.cost}</td>
                                         <td class="col">${trajet.offerer.getFirstname()}</td>
-                                        <td class="col">${trajet.offerer}</td>
-                                        <td class="col">${trajet.)} ${oeuvre.proprietaire.getPrenomProprietaire()}</td>
+                                        <td class="col">Autorisation de fumer : ${trajet.smoke} <br> Nombre de bagages autorisé : ${trajet.luggage}</td>
                                         <td class="col">
                                             <form method="post">
                                                 <button type="submit" name="reserv" value="${trajet.id}" formaction="ajouterReservation"

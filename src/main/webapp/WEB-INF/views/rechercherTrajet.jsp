@@ -34,20 +34,19 @@
                                 </div>
                                 <!--Body-->
                                 <div class="md-form">
-                                    <label for="nom" class="active white-text"> De </label>
-                                    <INPUT type="text" class="form-control amber-text" name="txtnom" value="" id="nom">
+                                    <label for="fromAdressTravel" class="active white-text"> De </label>
+                                    <INPUT type="text" class="form-control text-info" name="fromAdressTravel" value="" id="fromAdressTravel">
                                 </div>
                                 <div class="md-form">
-                                    <label for="prenom" class="active white-text"> A </label>
-                                    <INPUT type="text" class="form-control amber-text" name="txtprenom" id="prenom">
+                                    <label for="toAdressTravel" class="active white-text"> A </label>
+                                    <INPUT type="text" class="form-control text-info" name="toAdressTravel" id="toAdressTravel">
                                 </div>
                                 <div class="md-form">
-                                    <label for="ville" class="active white-text"> Date </label>
-                                    <INPUT type="text" class="form-control amber-text" name="txtville" id="ville">
+                                    <label for="dateTravel" class="active white-text"> Date </label>
+                                    <INPUT type="date" class="form-control text-info" name="dateTravel" id="dateTravel">
                                 </div>
                                 <div class="text-center mt-4">
-                                    <button type="submit" name="bt" class="btn btn-default">Rechercher</button>
-                                    <hr class="hr-light mb-3 mt-4">
+                                    <button type="submit" name="bt" class="btn btn-info">Rechercher</button>
                                 </div>
                             </div>
                         </form>

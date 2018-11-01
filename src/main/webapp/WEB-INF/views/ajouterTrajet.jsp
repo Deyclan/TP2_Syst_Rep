@@ -19,7 +19,7 @@
 <header>
     <jsp:include page="menu.jsp"/>
 
-    <div class="view" style="background-image: url('resources/img/book.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="view" style="background-image: url('resources/img/bg.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
             <div class="container">
                 <div class="row mt-5 justify-content-center">
@@ -34,29 +34,31 @@
                                     <hr class="hr-light">
                                 </div>
                                 <!--Body-->
-                                <div class="md-form">
-                                    <label for="priceTravel" class="active white-text"> Prix du trajet </label>
-                                    <INPUT type="number" class="form-control amber-text" name="priceTravel" value="" id="priceTravel">
+                                <div class="md-form row justify-content-around">
+                                    <div class="md-form">
+                                        <label for="priceTravel" class="active white-text"> Prix par personne </label>
+                                        <INPUT type="number" class="form-control text-info" name="priceTravel" value="" id="priceTravel">
+                                    </div>
+                                    <div class="md-form">
+                                        <label for="seatTravel" class="active white-text"> Nombre de sièges </label>
+                                        <INPUT type="number" class="form-control text-info" name="seatTravel" value="" id="seatTravel">
+                                    </div>
                                 </div>
                                 <div class="md-form">
-                                    <label for="dateTravel" class="active white-text"> Date du trajet </label>
-                                    <INPUT type="text" class="form-control amber-text" name="dateTrajet" value="" id="dateTravel">
+                                    <label for="dateTravel" class="active white-text"> Date </label>
+                                    <INPUT type="date" class="form-control text-info" name="dateTrajet" placeholder="MM/DD/YYY" id="dateTravel">
                                 </div>
                                 <div class="md-form">
                                     <label for="fromAdressTravel" class="active white-text"> De </label>
-                                    <INPUT type="text" class="form-control amber-text" name="fromAdressTravel" id="fromAdressTravel">
+                                    <INPUT type="text" class="form-control text-info" name="fromAdressTravel" id="fromAdressTravel">
                                 </div>
                                 <div class="md-form">
                                     <label for="toAdressTravel" class="active white-text"> A </label>
-                                    <INPUT type="text" class="form-control amber-text" name="toAdressTravel" id="toAdressTravel">
+                                    <INPUT type="text" class="form-control text-info" name="toAdressTravel" id="toAdressTravel">
                                 </div>
-                                <div class="md-form">
-                                    <label for="seatTravel" class="active white-text"> Nombre de sièges </label>
-                                    <INPUT type="number" class="form-control amber-text" name="seatTravel" value="" id="seatTravel">
-                                </div>
+
                                 <div class="text-center mt-4">
-                                    <button type="submit" name="bt" class="btn btn-default">Ajouter</button>
-                                    <hr class="hr-light mb-3 mt-4">
+                                    <button type="submit" name="bt" class="btn btn-info">Ajouter</button>
                                 </div>
                             </div>
                         </form>

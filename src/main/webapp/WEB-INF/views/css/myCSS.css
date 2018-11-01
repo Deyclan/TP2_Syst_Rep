@@ -43,6 +43,18 @@ h5 {
 
 }
 
+.md-form label{
+    font-size: 0.8em!important;
+}
+
+.btn, .form-control{
+    font-size: 1em!important;
+}
+
+span + a{
+    display: inline-block;
+}
+
 .hr-light {
     border-top: 3px solid #fff;
     width: 80px;

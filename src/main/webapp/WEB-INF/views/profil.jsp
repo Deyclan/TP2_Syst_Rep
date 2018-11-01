@@ -20,7 +20,7 @@
     <jsp:include page="menu.jsp"/>
 
     <!-- Full Page Intro -->
-    <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('resources/img/covoit.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('resources/img/bg.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
         <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
             <div class="container">
                 <div class="row">

@@ -29,31 +29,28 @@
                                     <hr class="hr-light">
                                 </div>
                                 <!--Body-->
-                                <div class="md-form">
-                                    <label for="lastname" class="active white-text"> Nom </label>
-                                    <INPUT type="text" class="form-control blue-text" name="lastname" value="" id="lastname">
-                                </div>
-                                <div class="md-form">
-                                    <label for="firstname" class="active white-text"> Prénom </label>
-                                    <INPUT type="text" class="form-control blue-text" name="firstname" value="" id="firstname">
+                                <div class="md-form row justify-content-around">
+                                    <div class="md-form">
+                                        <label for="lastname" class="active white-text"> Nom </label>
+                                        <INPUT type="text" class="form-control blue-text" name="lastname" value="" id="lastname">
+                                    </div>
+                                    <div class="md-form">
+                                        <label for="firstname" class="active white-text"> Prénom </label>
+                                        <INPUT type="text" class="form-control blue-text" name="firstname" value="" id="firstname">
+                                    </div>
                                 </div>
 
-                                <div class="md-form row row-space">
-                                    <div class="col-2">
+                                <div class="md-form row justify-content-around">
+                                    <div class="md-form">
                                         <div class="input-group">
-                                            <label for="birthday" class="active white-text"> Année d'anniversaire </label>
-                                            <INPUT type="number" class="form-control blue-text" name="birthday" value="" id="birthday">
+                                            <label for="phone" class="active white-text"> Téléphone </label>
+                                            <INPUT type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4} | [0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}" class="form-control blue-text" name="phone" value="" id="phone">
                                         </div>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="md-form">
                                         <div class="input-group">
-                                            <label for="gender" class="active white-text"> Sexe </label>
-                                            <select class="form-control" name="gender" aria-hidden="true" id="gender">
-                                                <option disabled="disabled" selected="selected">Gender</option>
-                                                <option>Male</option>
-                                                <option>Female</option>
-                                                <option>Other</option>
-                                            </select>
+                                            <label for="email" class="active white-text"> Email </label>
+                                            <INPUT type="email" class="form-control blue-text" name="email" value="" id="email">
                                         </div>
                                     </div>
                                 </div>
@@ -66,12 +63,12 @@
                                     <INPUT type="password" class="form-control blue-text" name="password" id="pwd">
                                 </div>
                                 <div class="text-center mt-4">
-                                    <button type="submit" name="bt" class="btn btn-default text-center">S'inscrire</button>
-                                    <button type="reset" name="bt" class="btn btn-default text-center">RAZ</button>
+                                    <button type="submit" name="bt" class="btn btn-info text-center">S'inscrire</button>
+                                    <button type="reset" name="bt" class="btn btn-info text-center">RAZ</button>
                                     <hr class="hr-light mb-3 mt-4">
                                 </div>
                                 <div class="md-form">
-                                    <label class="active white-text"> Déjà membre? <a class="nav-link white-text" href="seConnecter"> Connectez-vous !</a> </label>
+                                    <span class="white-text"> Déjà membre? <a class="text-info" href="seConnecter"> Connectez-vous !</a> </span>
                                 </div>
                             </div>
                         </form>

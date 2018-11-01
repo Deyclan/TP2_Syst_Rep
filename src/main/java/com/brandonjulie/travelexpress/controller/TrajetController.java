@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
 import java.sql.Date;
 
 @Controller
@@ -15,7 +16,7 @@ public class TrajetController {
 
             /*------------------------------------------ CREER TRAJET ------------------------------------------*/
 
-    @RequestMapping(value = "ajouterTrajet")
+    @RequestMapping(value = "annoncerTrajet")
     public ModelAndView addTrip(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage;
         try {
@@ -37,7 +38,7 @@ public class TrajetController {
         String destinationPage;
         try {
             TravelEntity aTravel = new TravelEntity();
-            aTravel.setCost(Float.parseFloat(request.getParameter("priceTravel")));
+            aTravel.setCost(new BigDecimal(Float.parseFloat(request.getParameter("priceTravel"))));
             aTravel.setDate(Date.valueOf(request.getParameter("dateTravel")));
             aTravel.setFromAdress(request.getParameter("fromAdressTravel"));
             aTravel.setToAdress(request.getParameter("toAdressTravel"));
