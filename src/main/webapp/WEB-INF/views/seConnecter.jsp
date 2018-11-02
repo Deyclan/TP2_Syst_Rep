@@ -23,6 +23,7 @@
                         <form class="card wow fadeInDown" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInDown; animation-delay: 0.3s; background-color:rgba(0, 0, 0, 0.5);"
                               name='connexion' method="post" action="connexion">
                             <div class="card-body">
+                                <span class="alert-danger">${errorMsg}</span>
                                 <!--Header-->
                                 <div class="text-center">
                                     <h3 class="white-text"> Connexion </h3>

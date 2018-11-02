@@ -20,9 +20,8 @@ public class TrajetController {
     public ModelAndView addTrip(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String destinationPage;
         try {
-            //TODO: checker si utilisateur connecté
             boolean isConnected = false;
-            if (request.getSession().getAttribute("username") == null || request.getSession().getAttribute("username") == "") {
+            if (request.getParameter("connectedUserID") == null || request.getParameter("connectedUserID") == "-1") {
                 isConnected = true;
             }
             destinationPage = isConnected?"ajouterTrajet":"seConnecter";

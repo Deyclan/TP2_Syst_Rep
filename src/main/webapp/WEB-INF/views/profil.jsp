@@ -28,22 +28,24 @@
                     <div class="col-md-12 mb-3 white-text text-center">
                         <h3 class="h2-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Informations personnelles</strong></h3>
                         <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
-                        <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> Nom : ${user.firstname}  ${user.name}</strong></h4>
-                        <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> Email : ${user.email}</strong></h4>
-                        <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> Téléphone : ${user.phone} </strong></h4>
-                        <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> Synthèse des avis reçus : ${user.rating}</strong></h4>
+                        <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"> Nom : ${user.firstname}  ${user.name}</h4>
+                        <h4 class="text-uppercase mb-4 white-text wow fadeInDown" name="email" id="email" data-wow-delay="0.4s"> Email : <input disabled="disabled">${user.email} </input></h4>
+                        <h4 class="text-uppercase mb-4 white-text wow fadeInDown" name="phone" id="phone" data-wow-delay="0.4s"> Téléphone : <input disabled="disabled"> ${user.phone} </input></h4>
+                        <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"> Synthèse des avis reçus : ${user.rating}</h4>
+                        <input type="button" id="modifyBtn" value="Modifier les informations personnelles" />
+                        <input style="display: none;" type="button" id="validateBtn" value="Valider les modifications" onclick="location.href='@Url.Action("updateProfil", "SessionController")'"/>
                     </div>
                 </div>
                 <div class="row justify-content-between">
                     <div class="col-md-6 mb-3 white-text">
-                        <h3 class="h2-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Trajets proposés</strong></h3>
+                        <h3 class="h2-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown text-center" data-wow-delay="0.3s"><strong>Trajets proposés</strong></h3>
                         <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
                         <c:forEach items="${travelsProposed}" var="travel">
                             <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> ${travel.date} ${travel.fromAdress} ${travel.toAdress} ${travel.cost}</strong></h4>
                         </c:forEach>
                     </div>
                     <div class="col-md-6 mb-3 white-text">
-                        <h3 class="h2-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Trajets réservés</strong></h3>
+                        <h3 class="h2-reponsive text-center white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Trajets réservés</strong></h3>
                         <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
                         <c:forEach items="${travelsReserved}" var="travel">
                             <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> ${travel.date} ${travel.fromAdress} ${travel.toAdress} ${travel.cost}</strong></h4>
@@ -55,5 +57,11 @@
     </div>
 </header>
 <jsp:include page="footer.jsp"/>
+<script type="text/javascript">
+    $("#modifyBtn").click(function() {
+        $("input").attr('disabled', !$("#email").attr('disabled'));
+        $("#validateBtn").show();
+    });
+</script>
 </body>
 </html>

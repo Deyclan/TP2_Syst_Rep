@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row py-5">
             <div class="col-md-12 text-center small">
-                <p>Systèmes Répartis - TP 2 - Julie MOUNIER, Brandon PIARD - Maîtrise INFO - UQAC, 2018 </p>
+                <p>SystÃ¨mes RÃ©partis - TP 2 - Julie MOUNIER, Brandon PIARD - Maï¿½trise INFO - UQAC, 2018 </p>
             </div>
         </div>
     </div>
@@ -17,3 +17,4 @@
 <script>
     new WOW().init();
 </script>
+

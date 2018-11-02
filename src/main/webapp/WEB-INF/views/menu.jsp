@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% String username = "martin"; // TODO: request.getSession().getAttribute("username").toString(); %>
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
     <div class="container">
@@ -17,7 +16,8 @@
                     <a class="nav-link" href="annoncerTrajet"><span class="glyphicon glyphicon-plus-sign"></span> Annoncer </a>
                 </li>
             </ul>
-            <% if(username == null || username=="") {%>
+        <c:choose>
+            <c:when test="${connectedUserID == null or connectedUserID <= -1}">
             <ul class="nav navbar-nav my-2 my-lg-0">
                 <li class="nav-item col-auto ml-md-auto">
                     <a class="nav-link" href="sInscrire"><span class="glyphicon glyphicon-user"></span> Inscription </a>
@@ -26,7 +26,8 @@
                     <a class="nav-link white-text" href="seConnecter"><span class="glyphicon glyphicon-log-in"></span> Connexion </a>
                 </li>
             </ul>
-            <% } else { %>
+            </c:when>
+            <c:otherwise>
             <ul class="nav navbar-nav my-2 my-lg-0">
                 <li class="nav-item col-auto ml-md-auto">
                     <a class="nav-link" href="profil"><span class="glyphicon glyphicon-user"></span> Profil </a>
@@ -35,7 +36,8 @@
                     <a class="nav-link white-text" href="seDeconnecter"><span class="glyphicon glyphicon-log-out"></span> Déconnexion </a>
                 </li>
             </ul>
-            <%}%>
+            </c:otherwise>
+        </c:choose>
         </div>
     </div>
 </nav>
