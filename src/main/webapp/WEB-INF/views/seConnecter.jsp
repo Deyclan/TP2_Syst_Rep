@@ -32,11 +32,11 @@
                                 <!--Body-->
                                 <div class="md-form">
                                     <label for="user" class="active white-text"> Identifiant </label>
-                                    <INPUT type="text" class="form-control text-info" name="username" value="" id="user">
+                                    <INPUT type="text" class="form-control text-info" name="username" value="" id="user" required>
                                 </div>
                                 <div class="md-form">
                                     <label for="pwd" class="active white-text"> Mot de passe </label>
-                                    <INPUT type="password" class="form-control text-info" name="password" id="pwd">
+                                    <INPUT type="password" class="form-control text-info" name="password" id="pwd" required>
                                 </div>
                                 <div class="text-center mt-4">
                                     <button type="submit" name="bt" class="btn btn-info text-center">Se connecter</button>

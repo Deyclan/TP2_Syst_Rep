@@ -31,7 +31,7 @@ public class SessionController {
             idUser = unService.connect(request.getParameter("username"), request.getParameter("password"));
             if(idUser != -1){
                 // TODO : see if it works
-                request.setAttribute("connectedUserID", idUser);
+                request.getSession().setAttribute("connectedUserID", idUser);
                 destinationPage = "index";
             } else {
                 request.setAttribute("errorMsg", "Identifiant ou mot de passe incorrect");
@@ -53,7 +53,6 @@ public class SessionController {
 
     @RequestMapping(value = "inscription", method = RequestMethod.POST)
     public ModelAndView inscription(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String destinationPage;
         try {
             UserService userService = new UserService();
             UserEntity userEntity = new UserEntity();
@@ -65,12 +64,10 @@ public class SessionController {
             userEntity.setPassword(request.getParameter("password"));
             // TODO: are the other parameters nullable?
             userService.insertUser(userEntity);
-            destinationPage = "seConnecter";
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
-            destinationPage = "Erreur";
         }
-        return new ModelAndView(destinationPage);
+        return this.connexion(request,response);
     }
 
         /*------------------------------------------ PROFIL ------------------------------------------*/
@@ -78,18 +75,22 @@ public class SessionController {
     @RequestMapping(value = "profil", method = RequestMethod.GET)
     public ModelAndView showProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
         UserService userService = new UserService();
-        UserEntity userEntity = userService.getUserById(Integer.parseInt(request.getParameter("connectedUserID")));
+        int userID = Integer.parseInt(request.getSession().getAttribute("connectedUserID").toString());
+        UserEntity userEntity = userService.getUserById(userID);
+        if(userEntity.getPhone() == null){
+            userEntity.setPhone("Non défini");
+        }
         request.setAttribute("user", userEntity);
         TravelService travelService = new TravelService();
-        request.setAttribute("travelsProposed",travelService.getTravels(userEntity.getId()));
+        request.setAttribute("travelsProposed",travelService.getTravels(userID));
         // TODO : see how works those collections in UserEntity
         return new ModelAndView("profil");
     }
 
-    @RequestMapping(value = "updateProfil", method = RequestMethod.GET)
+    @RequestMapping(value = "updateProfil", method = RequestMethod.POST)
     public ModelAndView updateProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
         UserService userService = new UserService();
-        UserEntity userEntity = userService.getUserById(Integer.parseInt(request.getParameter("connectedUserID")));
+        UserEntity userEntity = userService.getUserById(Integer.parseInt(request.getSession().getAttribute("connectedUserID").toString()));
         userEntity.setPhone(request.getParameter("phone"));
         userEntity.setEmail(request.getParameter("email"));
         userService.updateUser(userEntity);
@@ -101,7 +102,7 @@ public class SessionController {
     @RequestMapping(value = "seDeconnecter", method = RequestMethod.GET)
     public ModelAndView deconnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
        // TODO : make sure it works
-        request.setAttribute("connectedUserID", "-1");
+        request.getSession().removeAttribute("connectedUserID");
         return new ModelAndView("index");
     }
 }

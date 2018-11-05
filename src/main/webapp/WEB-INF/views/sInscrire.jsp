@@ -32,11 +32,11 @@
                                 <div class="md-form row justify-content-around">
                                     <div class="md-form">
                                         <label for="lastname" class="active white-text"> Nom </label>
-                                        <INPUT type="text" class="form-control blue-text" name="lastname" value="" id="lastname">
+                                        <INPUT type="text" class="form-control blue-text" name="lastname" value="" id="lastname" required>
                                     </div>
                                     <div class="md-form">
                                         <label for="firstname" class="active white-text"> Prénom </label>
-                                        <INPUT type="text" class="form-control blue-text" name="firstname" value="" id="firstname">
+                                        <INPUT type="text" class="form-control blue-text" name="firstname" value="" id="firstname" required>
                                     </div>
                                 </div>
 
@@ -44,23 +44,23 @@
                                     <div class="md-form">
                                         <div class="input-group">
                                             <label for="phone" class="active white-text"> Téléphone </label>
-                                            <INPUT type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4} | [0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}" class="form-control blue-text" name="phone" value="" id="phone">
+                                            <INPUT type="tel" class="form-control blue-text" name="phone" value="" id="phone">
                                         </div>
                                     </div>
                                     <div class="md-form">
                                         <div class="input-group">
                                             <label for="email" class="active white-text"> Email </label>
-                                            <INPUT type="email" class="form-control blue-text" name="email" value="" id="email">
+                                            <INPUT type="email" class="form-control blue-text" name="email" value="" id="email" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="md-form">
                                     <label for="user" class="active white-text"> Identifiant </label>
-                                    <INPUT type="text" class="form-control blue-text" name="username" value="" id="user">
+                                    <INPUT type="text" class="form-control blue-text" name="username" value="" id="user" required>
                                 </div>
                                 <div class="md-form">
                                     <label for="pwd" class="active white-text"> Mot de passe </label>
-                                    <INPUT type="password" class="form-control blue-text" name="password" id="pwd">
+                                    <INPUT type="password" class="form-control blue-text" name="password" id="pwd" required>
                                 </div>
                                 <div class="text-center mt-4">
                                     <button type="submit" name="bt" class="btn btn-info text-center">S'inscrire</button>

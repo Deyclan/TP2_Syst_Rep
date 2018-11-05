@@ -8,6 +8,7 @@ public class TravelService extends EntityService {
 
     public void insertTravel(TravelEntity travelEntity){
         try {
+            startTransaction();
             begin();
             entityManager.persist(travelEntity);
             commitAndClose();
@@ -19,6 +20,7 @@ public class TravelService extends EntityService {
     public List<TravelEntity> getTravels(String from, String to){
         List<TravelEntity> travelEntities = null;
         try {
+            startTransaction();
             begin();
             String fromAdress = new StringBuilder().append("%").append(from).append("%").toString();
             String toAdress = new StringBuilder().append("%").append(to).append("%").toString();
@@ -33,6 +35,7 @@ public class TravelService extends EntityService {
     public List<TravelEntity> getTravels(String from, String to, float maxPrice){
         List<TravelEntity> travelEntities = null;
         try {
+            startTransaction();
             begin();
             String fromAdress = new StringBuilder().append("%").append(from).append("%").toString();
             String toAdress = new StringBuilder().append("%").append(to).append("%").toString();
@@ -47,8 +50,9 @@ public class TravelService extends EntityService {
     public List<TravelEntity> getTravels(int idOfferer) {
         List<TravelEntity> travelEntities = null;
         try {
+            startTransaction();
             begin();
-            travelEntities = (List<TravelEntity>) entityManager.createQuery("select t from TravelEntity t where t.offerer.id = :idOfferer").getResultList();
+            travelEntities = (List<TravelEntity>) entityManager.createQuery("select t from TravelEntity t where t.idOfferer =:idOfferer").getResultList();
             close();
         } catch (Exception e) {
             e.printStackTrace();

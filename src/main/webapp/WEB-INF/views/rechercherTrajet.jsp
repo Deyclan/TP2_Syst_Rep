@@ -25,7 +25,7 @@
                     <div class="col-md-6 col-xl-5 mb-4">
                         <!--Form-->
                         <form class="card wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; background-color:rgba(0, 0, 0, 0.5);"
-                              name='identification' method="post" action="listerTrajet">
+                              name='identification' method="post" action="listerResultatsTrajet">
                             <div class="card-body">
                                 <!--Header-->
                                 <div class="text-center">
@@ -35,15 +35,15 @@
                                 <!--Body-->
                                 <div class="md-form">
                                     <label for="fromAdressTravel" class="active white-text"> De </label>
-                                    <INPUT type="text" class="form-control text-info" name="fromAdressTravel" value="" id="fromAdressTravel">
+                                    <INPUT type="text" class="form-control text-info" name="fromAdressTravel" value="" id="fromAdressTravel" required>
                                 </div>
                                 <div class="md-form">
                                     <label for="toAdressTravel" class="active white-text"> A </label>
-                                    <INPUT type="text" class="form-control text-info" name="toAdressTravel" id="toAdressTravel">
+                                    <INPUT type="text" class="form-control text-info" name="toAdressTravel" id="toAdressTravel" required>
                                 </div>
                                 <div class="md-form">
                                     <label for="dateTravel" class="active white-text"> Date </label>
-                                    <INPUT type="date" class="form-control text-info" name="dateTravel" id="dateTravel">
+                                    <INPUT type="date" class="form-control text-info" name="dateTravel" id="dateTravel" required>
                                 </div>
                                 <div class="text-center mt-4">
                                     <button type="submit" name="bt" class="btn btn-info">Rechercher</button>

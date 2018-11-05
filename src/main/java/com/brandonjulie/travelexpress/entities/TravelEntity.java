@@ -177,6 +177,7 @@ public class TravelEntity {
         this.reservationsById = reservationsById;
     }
 
+    @MapsId("id_offerer")
     @ManyToOne
     @JoinColumn(name = "id_offerer", referencedColumnName = "id", nullable = false)
     public UserEntity getUserByIdOfferer() {

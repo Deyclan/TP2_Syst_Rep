@@ -74,6 +74,7 @@ public class ReservationEntity {
         this.idReserver = idReserver;
     }
 
+    @MapsId("id_transaction")
     @Basic
     @Column(name = "id_transaction", nullable = false)
     public int getIdTransaction() {
@@ -84,6 +85,7 @@ public class ReservationEntity {
         this.idTransaction = idTransaction;
     }
 
+    @MapsId("id_travel")
     @ManyToOne
     @JoinColumn(name = "id_travel", referencedColumnName = "id", nullable = false)
     public TravelEntity getTravelByIdTravel() {
@@ -94,6 +96,7 @@ public class ReservationEntity {
         this.travelByIdTravel = travelByIdTravel;
     }
 
+    @MapsId("id_reserver")
     @ManyToOne
     @JoinColumn(name = "id_reserver", referencedColumnName = "id", nullable = false)
     public UserEntity getUserByIdReserver() {
@@ -104,6 +107,7 @@ public class ReservationEntity {
         this.userByIdReserver = userByIdReserver;
     }
 
+    @MapsId("id_transaction")
     @ManyToOne
     @JoinColumn(name = "id_transaction", referencedColumnName = "id", nullable = false)
     public TransactionEntity getTransactionByIdTransaction() {

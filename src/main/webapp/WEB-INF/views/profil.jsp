@@ -24,17 +24,20 @@
     <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('resources/img/bg.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
         <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12 mb-3 white-text text-center">
-                        <h3 class="h2-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Informations personnelles</strong></h3>
-                        <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
-                        <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"> Nom : ${user.firstname}  ${user.name}</h4>
-                        <h4 class="text-uppercase mb-4 white-text wow fadeInDown" name="email" id="email" data-wow-delay="0.4s"> Email : <input disabled="disabled">${user.email} </input></h4>
-                        <h4 class="text-uppercase mb-4 white-text wow fadeInDown" name="phone" id="phone" data-wow-delay="0.4s"> Téléphone : <input disabled="disabled"> ${user.phone} </input></h4>
-                        <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"> Synthèse des avis reçus : ${user.rating}</h4>
-                        <input type="button" id="modifyBtn" value="Modifier les informations personnelles" />
-                        <input style="display: none;" type="button" id="validateBtn" value="Valider les modifications" onclick="location.href='@Url.Action("updateProfil", "SessionController")'"/>
-                    </div>
+                <div class="row mt-5 justify-content-center">
+                    <form class="card" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInDown; animation-delay: 0.3s; background-color:rgba(0, 0, 0, 0.5);"
+                          name='updateProfil' method="post" action="updateProfil">
+                        <div class="col-md-12 mb-3 white-text text-center">
+                            <h3 class="h2-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5"><strong>Informations personnelles</strong></h3>
+                            <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
+                            <h4 class="text-uppercase mb-4 white-text"> Nom : ${user.firstname}  ${user.name}</h4>
+                            <h4 class="text-uppercase mb-4 white-text"> Email : <input name="email" id="email" disabled="disabled" value="${user.email}" required/></h4>
+                            <h4 class="text-uppercase mb-4 white-text"> Téléphone : <input name="phone" id="phone" disabled="disabled" value="${user.phone}"/></h4>
+                            <h4 class="text-uppercase mb-4 white-text"> Synthèse des avis reçus : ${user.rating}</h4>
+                            <input class="btn btn-info" type="button" id="modifyBtn" value="Modifier les informations personnelles" />
+                            <button class="btn btn-info" type="submit" style="display: none;" id="validateBtn">Valider les modifications</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="row justify-content-between">
                     <div class="col-md-6 mb-3 white-text">
@@ -59,7 +62,8 @@
 <jsp:include page="footer.jsp"/>
 <script type="text/javascript">
     $("#modifyBtn").click(function() {
-        $("input").attr('disabled', !$("#email").attr('disabled'));
+        $("#email").attr('disabled', !$("#email").attr('disabled'));
+        $("#phone").attr('disabled', !$("#phone").attr('disabled'));
         $("#validateBtn").show();
     });
 </script>

@@ -1,6 +1,9 @@
 package com.brandonjulie.travelexpress.service;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 /**
  * Created by Valentin on 06/04/2016.
@@ -13,7 +16,7 @@ public abstract class EntityService {
     EntityTransaction transaction;
 
     public EntityTransaction startTransaction() throws Exception {
-        emf = Persistence.createEntityManagerFactory("travel_express");
+        emf = Persistence.createEntityManagerFactory("travelExpressJPA");
         entityManager = emf.createEntityManager();
 
         return entityManager.getTransaction();

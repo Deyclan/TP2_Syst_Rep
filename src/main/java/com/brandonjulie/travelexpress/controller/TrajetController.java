@@ -21,10 +21,16 @@ public class TrajetController {
         String destinationPage;
         try {
             boolean isConnected = false;
-            if (request.getParameter("connectedUserID") == null || request.getParameter("connectedUserID") == "-1") {
+            if (request.getSession().getAttribute("connectedUserID") != null) {
                 isConnected = true;
             }
-            destinationPage = isConnected?"ajouterTrajet":"seConnecter";
+            if(isConnected){
+                destinationPage = "ajouterTrajet";
+            }
+            else {
+                request.setAttribute("errorMsg", "Veuillez vous connecter pour proposer un trajet");
+                destinationPage = "seConnecter";
+            }
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "Erreur";
@@ -59,7 +65,7 @@ public class TrajetController {
         return new ModelAndView("rechercherTrajet");
     }
 
-    @RequestMapping(value = "listerResultatsTrajet", method = RequestMethod.GET)
+    @RequestMapping(value = "listerResultatsTrajet", method = RequestMethod.POST)
     public ModelAndView listResults(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //TODO : get list of trajet corresponding to criterias
         return new ModelAndView("listerResultatsTrajet");

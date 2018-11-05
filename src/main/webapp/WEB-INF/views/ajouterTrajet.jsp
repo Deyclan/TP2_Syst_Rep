@@ -37,24 +37,24 @@
                                 <div class="md-form row justify-content-around">
                                     <div class="md-form">
                                         <label for="priceTravel" class="active white-text"> Prix par personne </label>
-                                        <INPUT type="number" class="form-control text-info" name="priceTravel" value="" id="priceTravel">
+                                        <INPUT type="number" class="form-control text-info" name="priceTravel" value="" id="priceTravel" required>
                                     </div>
                                     <div class="md-form">
                                         <label for="seatTravel" class="active white-text"> Nombre de sièges </label>
-                                        <INPUT type="number" class="form-control text-info" name="seatTravel" value="" id="seatTravel">
+                                        <INPUT type="number" class="form-control text-info" name="seatTravel" value="" id="seatTravel" required>
                                     </div>
                                 </div>
                                 <div class="md-form">
                                     <label for="dateTravel" class="active white-text"> Date </label>
-                                    <INPUT type="date" class="form-control text-info" name="dateTrajet" placeholder="MM/DD/YYY" id="dateTravel">
+                                    <INPUT type="date" class="form-control text-info" name="dateTrajet" placeholder="MM/DD/YYY" id="dateTravel" required>
                                 </div>
                                 <div class="md-form">
                                     <label for="fromAdressTravel" class="active white-text"> De </label>
-                                    <INPUT type="text" class="form-control text-info" name="fromAdressTravel" id="fromAdressTravel">
+                                    <INPUT type="text" class="form-control text-info" name="fromAdressTravel" id="fromAdressTravel" required>
                                 </div>
                                 <div class="md-form">
                                     <label for="toAdressTravel" class="active white-text"> A </label>
-                                    <INPUT type="text" class="form-control text-info" name="toAdressTravel" id="toAdressTravel">
+                                    <INPUT type="text" class="form-control text-info" name="toAdressTravel" id="toAdressTravel" required>
                                 </div>
 
                                 <div class="text-center mt-4">

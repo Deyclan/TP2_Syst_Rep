@@ -2,16 +2,17 @@ package com.brandonjulie.travelexpress.service;
 
 import com.brandonjulie.travelexpress.entities.UserEntity;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityTransaction;
 
 public class UserService extends EntityService {
 
     public void insertUser(UserEntity userEntity){
         try{
-            begin();
+            EntityTransaction entityTransaction = startTransaction();
+            entityTransaction.begin();
             entityManager.persist(userEntity);
-            commitAndClose();
+            entityTransaction.commit();
+            entityManager.close();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -20,6 +21,7 @@ public class UserService extends EntityService {
     public UserEntity getUserById(int id){
         UserEntity user = null;
         try{
+            startTransaction();
             begin();
             user = entityManager.find(UserEntity.class, id);
             close();
@@ -31,6 +33,7 @@ public class UserService extends EntityService {
 
     public void updateUser(UserEntity userEntity) {
         try {
+            startTransaction();
             begin();
             entityManager.merge(userEntity);
             commitAndClose();
