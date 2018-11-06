@@ -40,7 +40,7 @@
                                     </tr>
                                     </thead>
                                     <tbody class="white-text">
-                                    <c:forEach items="${mesTrajets}" var="trajet">
+                                    <c:forEach items="${resultedTravels}" var="trajet">
                                         <tr class="row justify-content-center">
                                             <td class="col" scope="row">De ${trajet.fromAdress} à ${trajet.toAdress}</td>
                                             <td class="col">${trajet.date}</td>

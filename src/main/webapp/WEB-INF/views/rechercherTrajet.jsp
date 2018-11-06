@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -43,7 +42,7 @@
                                 </div>
                                 <div class="md-form">
                                     <label for="dateTravel" class="active white-text"> Date </label>
-                                    <INPUT type="date" class="form-control text-info" name="dateTravel" id="dateTravel" required>
+                                    <INPUT type="date" class="form-control text-info" name="dateTravel" id="dateTravel">
                                 </div>
                                 <div class="text-center mt-4">
                                     <button type="submit" name="bt" class="btn btn-info">Rechercher</button>

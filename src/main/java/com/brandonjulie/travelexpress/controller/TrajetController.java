@@ -1,6 +1,7 @@
 package com.brandonjulie.travelexpress.controller;
 
 import com.brandonjulie.travelexpress.entities.TravelEntity;
+import com.brandonjulie.travelexpress.service.TravelService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 @Controller
 public class TrajetController {
@@ -67,7 +69,14 @@ public class TrajetController {
 
     @RequestMapping(value = "listerResultatsTrajet", method = RequestMethod.POST)
     public ModelAndView listResults(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        //TODO : get list of trajet corresponding to criterias
+        TravelService travelService = new TravelService();
+        if(request.getParameter("dateTravel") == null || request.getParameter("dateTravel") == ""){
+            request.setAttribute("resultedTravels", travelService.getTravels(request.getParameter("fromAdressTravel"), request.getParameter("toAdressTravel")));
+        }
+        else{
+            Date dateTravel = (Date) new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dateTravel"));
+            request.setAttribute("resultedTravels", travelService.getTravelsWithDate(request.getParameter("fromAdressTravel"), request.getParameter("toAdressTravel"), dateTravel));
+        }
         return new ModelAndView("listerResultatsTrajet");
     }
 

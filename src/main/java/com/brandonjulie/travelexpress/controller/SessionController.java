@@ -1,7 +1,9 @@
 package com.brandonjulie.travelexpress.controller;
 
+import com.brandonjulie.travelexpress.entities.TravelEntity;
 import com.brandonjulie.travelexpress.entities.UserEntity;
 import com.brandonjulie.travelexpress.service.ConnectionService;
+import com.brandonjulie.travelexpress.service.ReservationService;
 import com.brandonjulie.travelexpress.service.TravelService;
 import com.brandonjulie.travelexpress.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class SessionController {
@@ -82,8 +86,14 @@ public class SessionController {
         }
         request.setAttribute("user", userEntity);
         TravelService travelService = new TravelService();
-        request.setAttribute("travelsProposed",travelService.getTravels(userID));
-        // TODO : see how works those collections in UserEntity
+        request.setAttribute("travelsProposed",travelService.getTravelsByOffererID(userID));
+        ReservationService reservationService = new ReservationService();
+        List<TravelEntity> reservedTravels = new ArrayList<>();
+        List<Integer> reservedTravelsID = reservationService.getReservationsTravelIDByReserverID(userID);
+        for (Integer travelID : reservedTravelsID) {
+            reservedTravels.add(travelService.getTravelByID(travelID));
+        }
+        request.setAttribute("travelsReserved", reservedTravels);
         return new ModelAndView("profil");
     }
 

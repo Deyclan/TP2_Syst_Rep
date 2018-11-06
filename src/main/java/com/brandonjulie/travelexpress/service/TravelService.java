@@ -2,6 +2,8 @@ package com.brandonjulie.travelexpress.service;
 
 import com.brandonjulie.travelexpress.entities.TravelEntity;
 
+import javax.persistence.EntityTransaction;
+import java.sql.Date;
 import java.util.List;
 
 public class TravelService extends EntityService {
@@ -22,9 +24,7 @@ public class TravelService extends EntityService {
         try {
             startTransaction();
             begin();
-            String fromAdress = new StringBuilder().append("%").append(from).append("%").toString();
-            String toAdress = new StringBuilder().append("%").append(to).append("%").toString();
-            travelEntities = (List<TravelEntity>) entityManager.createQuery("select t from TravelEntity t where t.fromAdress like :fromAdress and t.toAdress like :toAdress").getResultList();
+            travelEntities = (List<TravelEntity>) entityManager.createQuery("select t from TravelEntity t where t.fromAdress like "+from+" and t.toAdress like "+ to).getResultList();
             close();
         }catch (Exception e){
             e.printStackTrace();
@@ -32,14 +32,14 @@ public class TravelService extends EntityService {
         return travelEntities;
     }
 
-    public List<TravelEntity> getTravels(String from, String to, float maxPrice){
+    public List<TravelEntity> getTravelsWithDate(String from, String to, Date dateTravel){
         List<TravelEntity> travelEntities = null;
         try {
             startTransaction();
             begin();
             String fromAdress = new StringBuilder().append("%").append(from).append("%").toString();
             String toAdress = new StringBuilder().append("%").append(to).append("%").toString();
-            travelEntities = (List<TravelEntity>) entityManager.createQuery("select t from TravelEntity t where t.fromAdress like :fromAdress and t.toAdress like :toAdress and t.cost <= :maxPrice").getResultList();
+            travelEntities = (List<TravelEntity>) entityManager.createQuery("select t from TravelEntity t where t.fromAdress like "+fromAdress+" and t.toAdress like "+ toAdress +"and t.date ="+dateTravel).getResultList();
             close();
         }catch (Exception e){
             e.printStackTrace();
@@ -47,17 +47,29 @@ public class TravelService extends EntityService {
         return travelEntities;
     }
 
-    public List<TravelEntity> getTravels(int idOfferer) {
+    public List<TravelEntity> getTravelsByOffererID(int idOfferer) {
         List<TravelEntity> travelEntities = null;
         try {
             startTransaction();
             begin();
-            travelEntities = (List<TravelEntity>) entityManager.createQuery("select t from TravelEntity t where t.idOfferer =:idOfferer").getResultList();
+            travelEntities = (List<TravelEntity>) entityManager.createQuery("select t from TravelEntity t where t.idOfferer ="+idOfferer+"").getResultList();
             close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return travelEntities;
+    }
 
+    public TravelEntity getTravelByID(int idTravel) {
+        TravelEntity travelEntity = null;
+        try {
+            EntityTransaction transaction = startTransaction();
+            transaction.begin();
+            travelEntity = entityManager.find(TravelEntity.class, idTravel);
+            entityManager.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return travelEntity;
     }
 }
