@@ -22,7 +22,7 @@
         <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
             <div class="container">
                 <c:choose>
-                    <c:when test="${mesTrajets != null}">
+                    <c:when test="${resultedTravels != null}">
                     <div class="row mt-5 justify-content-center">
                         <div class="col-md-12 my-3">
                             <div style="height:700px">
@@ -42,17 +42,17 @@
                                     <tbody class="white-text">
                                     <c:forEach items="${resultedTravels}" var="trajet">
                                         <tr class="row justify-content-center">
-                                            <td class="col" scope="row">De ${trajet.fromAdress} à ${trajet.toAdress}</td>
+                                            <td class="col" scope="row">De ${trajet.fromAdress} <br>à ${trajet.toAdress}</td>
                                             <td class="col">${trajet.date}</td>
                                             <td class="col">${trajet.cost}</td>
-                                            <td class="col">${trajet.offerer.getFirstname()}</td>
-                                            <td class="col">Autorisation de fumer : ${trajet.smoke} <br> Nombre de bagages
-                                                autorisé : ${trajet.luggage}</td>
+                                            <td class="col">${trajet.userByIdOfferer.firstname}</td>
+                                            <td class="col">Autorisation de fumer : ${(trajet.smoke == 0)? "Non" : "Oui"} <br> Bagage
+                                                autorisé : ${(trajet.luggage == 0)? "Non" : "Oui"}</td>
                                             <td class="col">
                                                 <form method="post">
-                                                    <button type="submit" name="reserv" value="${trajet.id}"
+                                                    <button type="submit" name="reserv" id="reserv" value="${trajet.id}"
                                                             formaction="ajouterReservation"
-                                                            class="btn aqua-gradient btn-sm ${(trajet.state==2)? "disabled":"active"}">
+                                                            class="btn aqua-gradient btn-sm ${(trajet.state==0)? "active":"disabled"}">
                                                         Réserver
                                                     </button>
                                                 </form>

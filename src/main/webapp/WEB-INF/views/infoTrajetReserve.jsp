@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="resources/css/mdb.min.css">
     <link rel="stylesheet" href="resources/css/myCSS.css">
     <link rel="stylesheet" href="resources/css/myCSS.css">
-    <title>Ajouter réservation</title>
+    <title>Informations trajet réservé</title>
 </head>
 
 <body>
@@ -26,17 +26,15 @@
                     <div class="col-md-12 mb-4 white-text text-center">
                         <h3 class="h2-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5"><strong>Informations du trajet</strong></h3>
                         <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
-                        <h4 class="text-uppercase mb-4 white-text"> Conducteur : ${user.firstname}</h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Contact : ${user.email} ${user.phone}</h4>
                         <h4 class="text-uppercase mb-4 white-text"> Trajet : ${travel.fromAdress} - ${travel.toAdress}</h4>
                         <h4 class="text-uppercase mb-4 white-text"> Prix : ${travel.cost}</h4>
                         <h4 class="text-uppercase mb-4 white-text"> Date : ${travel.date}</h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Autorisation de fumer : ${(travel.smoke == 0)? "Non" : "Oui"} <br> Bagage
-                        autorisé : ${(travel.luggage == 0)? "Non" : "Oui"}</h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Nombre de places restantes : ${seats}</h4>
-                        <label for="seatsReserved" class="active white-text"> Nombre de places que vous souhaitez réserver </label>
-                        <input class="text-info" type="number" max="${seats}" id="seatsReserved">
-                        <button class="btn btn-info" formaction="insererReservation" type="submit" name="payBtn" value="${travel.id}" id="payBtn"> Payer </button>
+                        <h4 class="text-uppercase mb-4 white-text"> Autorisation de fumer : <input type="checkbox" name="smoke" id="smoke" class="form-check-input border-white" disabled="disabled" ${(travel.smoke == 0)? "" : "checked"}> <br>
+                            Bagage autorisé : <input type="checkbox" class="form-check-input border-white" name="luggage" id="luggage" disabled="disabled" ${(travel.luggage == 0)? "" : "checked"}></h4>
+                        <h4 class="text-uppercase mb-4 white-text"> Conducteur : ${user.firstname}</h4>
+                        <h4 class="text-uppercase mb-4 white-text"> Note : ${user.firstname}</h4>
+                        <input class="btn btn-info" type="button" id="modifyTravelBtn" value="Modifier les informations" />
+                        <button class="btn btn-info" type="submit" style="display: none;" id="validateTravelBtn">Valider les modifications</button>
                     </div>
                 </div>
             </div>
@@ -44,5 +42,12 @@
     </div>
 </header>
 <jsp:include page="footer.jsp"/>
+<script type="text/javascript">
+    $("#modifyBtn").click(function() {
+        $("#smoke").attr('disabled', !$("#smoke").attr('disabled'));
+        $("#luggage").attr('disabled', !$("#luggage").attr('disabled'));
+        $("#validateBtn").show();
+    });
+</script>
 </body>
 </html>

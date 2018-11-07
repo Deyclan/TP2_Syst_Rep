@@ -2,18 +2,16 @@ package com.brandonjulie.travelexpress.service;
 
 import com.brandonjulie.travelexpress.entities.ReservationEntity;
 
-import javax.persistence.EntityTransaction;
 import java.util.List;
 
 public class ReservationService extends EntityService {
 
     public void insertReservation(ReservationEntity reservationEntity){
         try{
-            EntityTransaction entityTransaction = startTransaction();
-            entityTransaction.begin();
+            startTransaction();
+            begin();
             entityManager.persist(reservationEntity);
-            entityTransaction.commit();
-            entityManager.close();
+            commitAndClose();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -43,5 +41,18 @@ public class ReservationService extends EntityService {
             e.printStackTrace();
         }
         return reservationEntities;
+    }
+
+    public ReservationEntity getReservationByID(int idReservation){
+        ReservationEntity reservationEntity = null;
+        try{
+            startTransaction();
+            begin();
+            reservationEntity = entityManager.find(ReservationEntity.class, idReservation);
+            close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return reservationEntity;
     }
 }

@@ -1,4 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta charset="utf-8">
@@ -29,26 +31,29 @@
                                     <hr class="hr-light">
                                 </div>
                                 <!--Body-->
-                                <div class="md-form row justify-content-around">
-                                    <div class="md-form">
-                                        <label for="lastname" class="active white-text"> Nom </label>
-                                        <INPUT type="text" class="form-control blue-text" name="lastname" value="" id="lastname" required>
+                                <div class="form-row justify-content-around">
+                                    <div class="col">
+                                        <div class="md-form">
+                                            <label for="lastname" class="active white-text"> Nom </label>
+                                            <INPUT type="text" class="form-control blue-text" name="lastname" value="" id="lastname" required>
+                                        </div>
                                     </div>
-                                    <div class="md-form">
-                                        <label for="firstname" class="active white-text"> Prénom </label>
-                                        <INPUT type="text" class="form-control blue-text" name="firstname" value="" id="firstname" required>
+                                    <div class="col">
+                                        <div class="md-form">
+                                            <label for="firstname" class="active white-text"> Prénom </label>
+                                            <INPUT type="text" class="form-control blue-text" name="firstname" value="" id="firstname" required>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="md-form row justify-content-around">
-                                    <div class="md-form">
-                                        <div class="input-group">
+                                <div class="form-row justify-content-around">
+                                    <div class="col">
+                                        <div class="md-form">
                                             <label for="phone" class="active white-text"> Téléphone </label>
                                             <INPUT type="tel" class="form-control blue-text" name="phone" value="" id="phone">
                                         </div>
                                     </div>
-                                    <div class="md-form">
-                                        <div class="input-group">
+                                    <div class="col">
+                                        <div class="md-form">
                                             <label for="email" class="active white-text"> Email </label>
                                             <INPUT type="email" class="form-control blue-text" name="email" value="" id="email" required>
                                         </div>

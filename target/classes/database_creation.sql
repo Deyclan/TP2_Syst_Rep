@@ -109,14 +109,13 @@ INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_recei
 INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('5', '5,00', '7', '10');
 INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('6', '5,00', '9', '15');
 INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('7', '5,00', '8', '15');
-INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('8', '5,00', '16', '15');
-INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('9', '5,00', '16', '15');
-INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('10', '5,00', '2', '7');
-INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('11', '5,00', '10', '7');
-INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('12', '5,00', '12', '6');
-INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('13', '5,00', '18', '20');
-INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('14', '5,00', '19', '9');
-INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('15', '5,00', '11', '3');
+INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('8', '10,00', '16', '15');
+INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('9', '5,00', '2', '7');
+INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('10', '5,00', '10', '7');
+INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('11', '5,00', '12', '6');
+INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('12', '5,00', '18', '20');
+INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('13', '5,00', '19', '9');
+INSERT INTO `travel_express`.`transaction` (`id`, `amont`, `id_payer`, `id_receiver`) VALUES ('14', '5,00', '11', '3');
 
 /*-------------POPULATE RESERVATION TABLE-----------------*/
 INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('1', '16', '6', '1', '1');
@@ -127,10 +126,9 @@ INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `c
 INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('6', '24', '9', '1', '6');
 INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('7', '24', '8', '1', '7');
 INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('8', '24', '16', '1', '8');
-INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('9', '24', '16', '1', '9');
-INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('10', '28', '2', '1', '10');
-INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('11', '28', '10', '1', '11');
-INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('12', '17', '12', '1', '12');
-INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('13', '26', '18', '1', '13');
-INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('14', '19', '19', '1', '14');
-INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('15', '15', '11', '1', '15');
+INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('9', '28', '2', '1', '9');
+INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('10', '28', '10', '1', '10');
+INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('11', '17', '12', '1', '11');
+INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('12', '26', '18', '1', '12');
+INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('13', '19', '19', '1', '13');
+INSERT INTO `travel_express`.`reservation` (`id`, `id_travel`, `id_reserver`, `confirmed`, `id_transaction`) VALUES ('14', '15', '11', '1', '14');

@@ -1,8 +1,10 @@
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <footer>
     <div class="container">
         <div class="row py-5">
             <div class="col-md-12 text-center small">
-                <p>Systèmes Répartis - TP 2 - Julie MOUNIER, Brandon PIARD - Ma�trise INFO - UQAC, 2018 </p>
+                <p>Systèmes Répartis - TP 2 - Julie MOUNIER, Brandon PIARD - Maîtrise INFO - UQAC, 2018 </p>
             </div>
         </div>
     </div>

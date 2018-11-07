@@ -19,6 +19,13 @@ import java.util.List;
 @Controller
 public class SessionController {
 
+    //TODO: fix UTF8 problem
+    ConnectionService unService = new ConnectionService();
+    ReservationService reservationService = new ReservationService();
+    TravelService travelService = new TravelService();
+    UserService userService = new UserService();
+
+
         /*------------------------------------------ CONNEXION ------------------------------------------*/
 
     @RequestMapping(value = "seConnecter", method = RequestMethod.GET)
@@ -31,11 +38,10 @@ public class SessionController {
         int idUser;
         String destinationPage;
         try {
-            ConnectionService unService = new ConnectionService();
             idUser = unService.connect(request.getParameter("username"), request.getParameter("password"));
             if(idUser != -1){
-                // TODO : see if it works
                 request.getSession().setAttribute("connectedUserID", idUser);
+                request.setAttribute("successMsg", "Vous êtes bien connecté");
                 destinationPage = "index";
             } else {
                 request.setAttribute("errorMsg", "Identifiant ou mot de passe incorrect");
@@ -58,7 +64,6 @@ public class SessionController {
     @RequestMapping(value = "inscription", method = RequestMethod.POST)
     public ModelAndView inscription(HttpServletRequest request, HttpServletResponse response) throws Exception {
         try {
-            UserService userService = new UserService();
             UserEntity userEntity = new UserEntity();
             userEntity.setFirstname(request.getParameter("firstname"));
             userEntity.setName(request.getParameter("lastname"));
@@ -66,7 +71,8 @@ public class SessionController {
             userEntity.setPhone(request.getParameter("phone"));
             userEntity.setUsername(request.getParameter("username"));
             userEntity.setPassword(request.getParameter("password"));
-            // TODO: are the other parameters nullable?
+            userEntity.setReservationsById(new ArrayList<>());
+            userEntity.setTravelsById(new ArrayList<>());
             userService.insertUser(userEntity);
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
@@ -78,16 +84,13 @@ public class SessionController {
 
     @RequestMapping(value = "profil", method = RequestMethod.GET)
     public ModelAndView showProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        UserService userService = new UserService();
         int userID = Integer.parseInt(request.getSession().getAttribute("connectedUserID").toString());
         UserEntity userEntity = userService.getUserById(userID);
-        if(userEntity.getPhone() == null){
+        if(userEntity.getPhone() == null || userEntity.getPhone() == ""){
             userEntity.setPhone("Non défini");
         }
         request.setAttribute("user", userEntity);
-        TravelService travelService = new TravelService();
         request.setAttribute("travelsProposed",travelService.getTravelsByOffererID(userID));
-        ReservationService reservationService = new ReservationService();
         List<TravelEntity> reservedTravels = new ArrayList<>();
         List<Integer> reservedTravelsID = reservationService.getReservationsTravelIDByReserverID(userID);
         for (Integer travelID : reservedTravelsID) {
@@ -99,20 +102,50 @@ public class SessionController {
 
     @RequestMapping(value = "updateProfil", method = RequestMethod.POST)
     public ModelAndView updateProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        UserService userService = new UserService();
         UserEntity userEntity = userService.getUserById(Integer.parseInt(request.getSession().getAttribute("connectedUserID").toString()));
-        userEntity.setPhone(request.getParameter("phone"));
+        if(request.getParameter("phone") != "Non défini")
+            userEntity.setPhone(request.getParameter("phone"));
         userEntity.setEmail(request.getParameter("email"));
         userService.updateUser(userEntity);
         return this.showProfile(request,response);
+    }
+
+        /*------------------------------------------ INFOS TRAJETS ------------------------------------------*/
+
+    @RequestMapping(value = "infoTrajetPropose", method = RequestMethod.POST)
+    public ModelAndView showProposedTravels(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        TravelEntity travelEntity = travelService.getTravelByID((Integer) request.getAttribute("infoProposedBtn"));
+        request.setAttribute("travel", travelEntity);
+        request.setAttribute("user", travelEntity.getUserByIdOfferer());
+        return new ModelAndView("infoTrajetPropose");
+    }
+
+    @RequestMapping(value ="updateProposedTravel", method = RequestMethod.POST)
+    public ModelAndView updateProposedTravel(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        TravelEntity travelEntity = travelService.getTravelByID((Integer) request.getAttribute("validateTravelBtn"));
+        if (request.getParameter("luggage") != null) {
+            travelEntity.setLuggage((byte) 1);
+        } else { travelEntity.setLuggage((byte) 0); }
+        if (request.getParameter("smoke") != null) {
+            travelEntity.setSmoke((byte) 1);
+        } else { travelEntity.setSmoke((byte) 0); }
+        travelService.updateTravel(travelEntity);
+        return new ModelAndView("profil");
+    }
+
+    @RequestMapping(value = "infoTrajetReserve", method = RequestMethod.POST)
+    public ModelAndView showReservedTravels(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        TravelEntity travelEntity = travelService.getTravelByID((Integer) request.getAttribute("infoReservedBtn"));
+        request.setAttribute("travel", travelEntity);
+        return new ModelAndView("infoTrajetReserve");
     }
 
         /*------------------------------------------ DECONNEXION ------------------------------------------*/
 
     @RequestMapping(value = "seDeconnecter", method = RequestMethod.GET)
     public ModelAndView deconnexion(HttpServletRequest request, HttpServletResponse response) throws Exception {
-       // TODO : make sure it works
         request.getSession().removeAttribute("connectedUserID");
+        request.setAttribute("successMsg", "Déconnexion réussie");
         return new ModelAndView("index");
     }
 }

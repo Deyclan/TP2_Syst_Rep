@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,7 +13,6 @@
     <link rel="stylesheet" href="resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
     <link rel="stylesheet" href="resources/css/mdb.min.css">
-    <link rel="stylesheet" href="resources/css/myCSS.css">
     <link rel="stylesheet" href="resources/css/myCSS.css">
     <title>TravelExpress : Site de covoiturage</title>
 </head>
@@ -43,16 +44,34 @@
                     <div class="col-md-6 mb-3 white-text">
                         <h3 class="h2-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown text-center" data-wow-delay="0.3s"><strong>Trajets proposés</strong></h3>
                         <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
-                        <c:forEach items="${travelsProposed}" var="travel">
-                            <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> ${travel.date} ${travel.fromAdress} ${travel.toAdress} ${travel.cost}</strong></h4>
-                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${fn:length(travelsProposed) >0}">
+                            <c:forEach items="${travelsProposed}" var="travel">
+                                <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> ${travel.date} ${travel.fromAdress} ${travel.toAdress} ${travel.cost}</strong>
+                                    <button class="btn btn-info btn-xs" type="submit" name="infoProposedBtn" id="infoProposedBtn" formaction="infoTrajetPropose" value="${travel.id}">Infos</button>
+                                </h4>
+                            </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                            <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> Aucun trajet proposé</strong></h4>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
-                    <div class="col-md-6 mb-3 white-text">
-                        <h3 class="h2-reponsive text-center white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Trajets réservés</strong></h3>
-                        <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
-                        <c:forEach items="${travelsReserved}" var="travel">
-                            <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> ${travel.date} ${travel.fromAdress} ${travel.toAdress} ${travel.cost}</strong></h4>
-                        </c:forEach>
+                        <div class="col-md-6 mb-3 white-text">
+                            <h3 class="h2-reponsive text-center white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Trajets réservés</strong></h3>
+                            <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
+                            <c:choose>
+                            <c:when test="${fn:length(travelsReserved) >0}">
+                            <c:forEach items="${travelsReserved}" var="travel">
+                                <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> ${travel.date} ${travel.fromAdress} ${travel.toAdress} ${travel.cost}</strong>
+                                    <button class="btn btn-info btn-xs" type="submit" name="infoReservedBtn" id="infoReservedBtn" formaction="infoTrajetReserve" value="${travel.id}">Infos</button>
+                                </h4>
+                            </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> Aucun trajet réservé</strong></h4>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
