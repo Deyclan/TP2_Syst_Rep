@@ -26,11 +26,11 @@
         <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
             <div class="container">
                 <div class="row mt-5 justify-content-center">
-                    <form class="card" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInDown; animation-delay: 0.3s; background-color:rgba(0, 0, 0, 0.5);"
+                    <form class="card" style="visibility: visible; background-color:rgba(0, 0, 0, 0.5);"
                           name='updateProfil' method="post" action="updateProfil">
                         <div class="col-md-12 mb-3 white-text text-center">
                             <h3 class="h2-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5"><strong>Informations personnelles</strong></h3>
-                            <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
+                            <hr class="hr-light my-4">
                             <h4 class="text-uppercase mb-4 white-text"> Nom : ${user.firstname}  ${user.name}</h4>
                             <h4 class="text-uppercase mb-4 white-text"> Email : <input name="email" id="email" disabled="disabled" value="${user.email}" required/></h4>
                             <h4 class="text-uppercase mb-4 white-text"> Téléphone : <input name="phone" id="phone" disabled="disabled" value="${user.phone}"/></h4>
@@ -41,7 +41,7 @@
                     </form>
                 </div>
                 <div class="row justify-content-between">
-                    <div class="col-md-6 mb-3 white-text">
+                    <div class="col-md-6 mb-3 white-text text-center">
                         <h3 class="h2-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown text-center" data-wow-delay="0.3s"><strong>Trajets proposés</strong></h3>
                         <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
                         <c:choose>
@@ -59,15 +59,17 @@
                             </c:otherwise>
                         </c:choose>
                     </div>
-                        <div class="col-md-6 mb-3 white-text">
+                        <div class="col-md-6 mb-3 white-text text-center">
                             <h3 class="h2-reponsive text-center white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Trajets réservés</strong></h3>
                             <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
                             <c:choose>
                             <c:when test="${fn:length(travelsReserved) >0}">
                             <c:forEach items="${travelsReserved}" var="travel">
-                                <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> ${travel.date} ${travel.fromAdress} ${travel.toAdress} ${travel.cost}</strong>
+                            <form method="post">
+                            <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> ${travel.date} ${travel.fromAdress} ${travel.toAdress} ${travel.cost}</strong>
                                     <button class="btn btn-info btn-xs" type="submit" name="infoReservedBtn" id="infoReservedBtn" formaction="infoTrajetReserve" value="${travel.id}">Infos</button>
                                 </h4>
+                            </form>
                             </c:forEach>
                             </c:when>
                             <c:otherwise>

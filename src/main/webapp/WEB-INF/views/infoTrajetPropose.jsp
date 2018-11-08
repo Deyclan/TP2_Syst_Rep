@@ -19,26 +19,45 @@
     <jsp:include page="menu.jsp"/>
 
     <!-- Full Page Intro -->
-    <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('resources/img/bg.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+    <div class="view" style="background-image: url('resources/img/bg.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
             <div class="container">
-                <div class="row">
-                    <form class="card" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInDown; animation-delay: 0.3s; background-color:rgba(0, 0, 0, 0.5);"
-                          name='updateProfil' method="post" action="updateProposedTravel">
-                    <div class="col-md-12 mb-4 white-text text-center">
-                        <h3 class="h2-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5"><strong>Informations du trajet</strong></h3>
-                        <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
-                        <h4 class="text-uppercase mb-4 white-text"> Trajet : ${travel.fromAdress} - ${travel.toAdress}</h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Prix : ${travel.cost}</h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Date : ${travel.date}</h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Autorisation de fumer : <input type="checkbox" name="smoke" id="smoke" class="form-check-input border-white" disabled="disabled" ${(travel.smoke == 0)? "" : "checked"}> <br>
-                            Bagage autorisé : <input type="checkbox" class="form-check-input border-white" name="luggage" id="luggage" disabled="disabled" ${(travel.luggage == 0)? "" : "checked"}></h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Personnes ayant réservé : ${reservers}</h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Nombre de places restantes : ${seats}</h4>
-                        <input ${hidden} class="btn btn-info" type="button" id="modifyTravelBtn" value="Modifier les informations" />
-                        <button class="btn btn-info" type="submit" style="display: none;" name="validateTravelBtn" id="validateTravelBtn" value="${travel.id}">Valider les modifications</button>
+                <div class="row mt-5 justify-content-center">
+                    <div class="col-md-6 col-xl-5 mb-4">
+                        <form class="card" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInDown; animation-delay: 0.3s; background-color:rgba(0, 0, 0, 0.5);"
+                              name='updateProfil' method="post" action="updateProposedTravel">
+                            <div class="card-body">
+                                <!--Header-->
+                                <div class="text-center">
+                                    <h3 class="white-text text-uppercase font-weight-bold"><strong>Informations du trajet</strong></h3>
+                                    <hr class="hr-light">
+                                </div>
+                                <!--Body-->
+                                <div class="md-form">
+                                    <h4 class="text-uppercase mb-4 white-text"> Trajet : ${travel.fromAdress} - ${travel.toAdress}</h4>
+                                    <h4 class="text-uppercase mb-4 white-text"> Prix : ${travel.cost}</h4>
+                                    <h4 class="text-uppercase mb-4 white-text"> Date : ${travel.date}</h4>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input border-white" type="checkbox" name="smoke" id="smoke" disabled="disabled" ${(travel.smoke == 0)? "" : "checked"}>
+                                    <label class="text-uppercase mb-4 white-text form-check-label" for="smoke">Fumeur accepté</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input border-white" type="checkbox" name="luggage" id="luggage" disabled="disabled" ${(travel.luggage == 0)? "" : "checked"}>
+                                    <label class="text-uppercase mb-4 white-text form-check-label" for="luggage">Bagage accepté</label>
+                                </div>
+                                <div class="md-form">
+                                    <h4 class="text-uppercase mb-4 white-text"> Personnes ayant réservé : ${reservers}</h4>
+                                    <h4 class="text-uppercase mb-4 white-text"> Nombre de places restantes : ${seats}</h4>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <input class="btn btn-info" type="button" id="returnBtn" onclick="location.href='/profil'" value="Retour" />
+                                    <input ${hidden} class="btn btn-info" type="button" id="modifyTravelBtn" value="Modifier les informations" />
+                                    <button class="btn btn-info" type="submit" style="display: none;" name="validateTravelBtn" id="validateTravelBtn" value="${travel.id}">Valider les modifications</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>

@@ -19,22 +19,43 @@
     <jsp:include page="menu.jsp"/>
 
     <!-- Full Page Intro -->
-    <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('resources/img/reservation.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+    <div class="view" style="background-image: url('resources/img/reservation.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
             <div class="container">
-                <div class="row">
+                <div class="row mt-5 justify-content-center">
                     <div class="col-md-12 mb-4 white-text text-center">
-                        <h3 class="h2-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5"><strong>Informations du trajet</strong></h3>
-                        <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
-                        <h4 class="text-uppercase mb-4 white-text"> Trajet : ${travel.fromAdress} - ${travel.toAdress}</h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Prix : ${travel.cost}</h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Date : ${travel.date}</h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Autorisation de fumer : <input type="checkbox" name="smoke" id="smoke" class="form-check-input border-white" disabled="disabled" ${(travel.smoke == 0)? "" : "checked"}> <br>
-                            Bagage autorisé : <input type="checkbox" class="form-check-input border-white" name="luggage" id="luggage" disabled="disabled" ${(travel.luggage == 0)? "" : "checked"}></h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Conducteur : ${user.firstname}</h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Note : ${user.firstname}</h4>
-                        <input class="btn btn-info" type="button" id="modifyTravelBtn" value="Modifier les informations" />
-                        <button class="btn btn-info" type="submit" style="display: none;" id="validateTravelBtn">Valider les modifications</button>
+                        <form class="card" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInDown; animation-delay: 0.3s; background-color:rgba(0, 0, 0, 0.5);"
+                              name='updateProfil' method="post" action="updateReservedTravel">
+                            <div class="card-body">
+                                <!--Header-->
+                                <div class="text-center">
+                                    <h3 class="white-text text-uppercase font-weight-bold"><strong>Informations du trajet</strong></h3>
+                                    <hr class="hr-light">
+                                </div>
+                                <!--Body-->
+                                <div class="md-form">
+                                    <h4 class="text-uppercase mb-4 white-text"> Trajet : ${travel.fromAdress} - ${travel.toAdress}</h4>
+                                    <h4 class="text-uppercase mb-4 white-text"> Prix : ${travel.cost}</h4>
+                                    <h4 class="text-uppercase mb-4 white-text"> Date : ${travel.date}</h4>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input border-white" type="checkbox" name="smoke" id="smoke" disabled="disabled" ${(travel.smoke == 0)? "" : "checked"}>
+                                    <label class="text-uppercase mb-4 white-text form-check-label" for="smoke">Fumeur accepté</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input border-white" type="checkbox" name="luggage" id="luggage" disabled="disabled" ${(travel.luggage == 0)? "" : "checked"}>
+                                    <label class="text-uppercase mb-4 white-text form-check-label" for="luggage">Bagage accepté</label>
+                                </div>
+                                <div class="md-form">
+                                    <h4 class="text-uppercase mb-4 white-text"> Conducteur : ${user.firstname}</h4>
+                                    <h4 class="text-uppercase mb-4 white-text"> Note :  <input type="number" min="0" max="5.00" step="0.01" name="note" id="note" disabled="disabled"/></h4>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <input class="btn btn-info" type="button" id="modifyNoteBtn" value="Modifier la note" />
+                                    <button class="btn btn-info" type="submit" style="display: none;" id="validateNoteBtn" name="validateNoteBtn" value="${user.id}">Valider la note</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -43,10 +64,9 @@
 </header>
 <jsp:include page="footer.jsp"/>
 <script type="text/javascript">
-    $("#modifyTravelBtn").click(function() {
-        $("#smoke").attr('disabled', !$("#smoke").attr('disabled'));
-        $("#luggage").attr('disabled', !$("#luggage").attr('disabled'));
-        $("#validateTravelBtn").show();
+    $("#modifyNoteBtn").click(function() {
+        $("#note").attr('disabled', !$("#note").attr('disabled'));
+        $("#validateNoteBtn").show();
     });
 </script>
 </body>

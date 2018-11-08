@@ -41,7 +41,7 @@ public class TravelService extends EntityService {
             begin();
             String fromAdress = new StringBuilder().append("%").append(from).append("%").toString();
             String toAdress = new StringBuilder().append("%").append(to).append("%").toString();
-            travelEntities = (List<TravelEntity>) entityManager.createQuery("select t from TravelEntity t where t.fromAdress like '"+fromAdress+"' and t.toAdress like '"+ toAdress +"' and t.date ="+dateTravel).getResultList();
+            travelEntities = (List<TravelEntity>) entityManager.createQuery("select t from TravelEntity t where t.fromAdress like '"+fromAdress+"' and t.toAdress like '"+ toAdress +"' and t.date ='"+dateTravel+"'").getResultList();
             close();
         }catch (Exception e){
             e.printStackTrace();

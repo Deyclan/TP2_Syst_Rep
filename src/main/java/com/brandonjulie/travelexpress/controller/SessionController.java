@@ -127,7 +127,11 @@ public class SessionController {
             TransactionEntity transactionEntity = transactionService.getTransactionByID(reservationEntity.getIdTransaction());
             numberOfSeatsReserved+= transactionEntity.getAmont().divide(BigDecimal.valueOf(5)).intValueExact();
         }
-        request.setAttribute("reservers", stringBuilder.toString());
+        if (stringBuilder.length() > 0) {
+            request.setAttribute("reservers", stringBuilder.toString());
+        } else {
+            request.setAttribute("reservers", "Aucune personne");
+        }
         if(travelEntity.getState()==1){
             request.setAttribute("seats", "aucune");
         } else {
@@ -150,14 +154,29 @@ public class SessionController {
             travelEntity.setSmoke((byte) 1);
         } else { travelEntity.setSmoke((byte) 0); }
         travelService.updateTravel(travelEntity);
-        return new ModelAndView("profil");
+        return this.showProfile(request,response);
     }
 
     @RequestMapping(value = "infoTrajetReserve", method = RequestMethod.POST)
     public ModelAndView showReservedTravels(HttpServletRequest request, HttpServletResponse response) throws Exception {
         TravelEntity travelEntity = travelService.getTravelByID(Integer.parseInt(request.getParameter("infoReservedBtn")));
         request.setAttribute("travel", travelEntity);
+        request.setAttribute("user", travelEntity.getUserByIdOfferer());
         return new ModelAndView("infoTrajetReserve");
+    }
+
+    @RequestMapping(value ="updateReservedTravel", method = RequestMethod.POST)
+    public ModelAndView updateReservedTravel(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        UserEntity userEntity = userService.getUserById(Integer.parseInt(request.getParameter("validateNoteBtn")));
+        if (request.getParameter("note") != null && request.getParameter("note") != "") {
+            if (userEntity.getRating() == null || userEntity.getRating().compareTo(BigDecimal.valueOf(0)) != 1) {
+                userEntity.setRating(new BigDecimal(request.getParameter("note")));
+            } else {
+                userEntity.setRating(userEntity.getRating().add(new BigDecimal(request.getParameter("note"))).divide(BigDecimal.valueOf(2)));
+            }
+            userService.updateUser(userEntity);
+        }
+        return this.showProfile(request,response);
     }
 
         /*------------------------------------------ DECONNEXION ------------------------------------------*/

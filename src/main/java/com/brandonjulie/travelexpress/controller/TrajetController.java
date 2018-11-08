@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,7 +98,7 @@ public class TrajetController {
             }
         }
         else{
-            Date dateTravel = (Date) new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dateTravel"));
+            Date dateTravel = Date.valueOf(request.getParameter("dateTravel"));
             travelEntities = travelService.getTravelsWithDate(request.getParameter("fromAdressTravel"), request.getParameter("toAdressTravel"), dateTravel);
             for (TravelEntity travelEntity: travelEntities) {
                 travelEntity.setUserByIdOfferer(userService.getUserById(travelEntity.getIdOfferer()));
