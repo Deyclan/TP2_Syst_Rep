@@ -48,7 +48,7 @@ public class ReservationController {
         try {
             ReservationEntity aReservation = new ReservationEntity();
             TransactionEntity aTransaction = new TransactionEntity();
-            TravelEntity aTravel = travelService.getTravelByID((Integer) request.getAttribute("payBtn"));
+            TravelEntity aTravel = travelService.getTravelByID(Integer.parseInt(request.getParameter("payBtn")));
 
             if(request.getSession().getAttribute("connectedUserID") != null){
                 aReservation.setIdReserver((Integer) request.getSession().getAttribute("connectedUserID"));
@@ -60,7 +60,7 @@ public class ReservationController {
             aReservation.setConfirmed((byte)1);
 
             aTransaction.setIdPayer(aReservation.getIdReserver());
-            aTransaction.setAmont( aTravel.getCost().multiply((BigDecimal) request.getAttribute("seatsReserved")));
+            aTransaction.setAmont( aTravel.getCost().multiply(new BigDecimal(request.getParameter("seatsReserved"))));
             aTransaction.setIdReceiver(aTravel.getIdOfferer());
             transactionService.insertTransaction(aTransaction);
 
@@ -68,7 +68,7 @@ public class ReservationController {
             reservationService.insertReservation(aReservation);
 
             // Setting travel's state to 1 = full.
-            if((int)request.getAttribute("seatsReserved") == possibleSeatsLeft){
+            if(Integer.parseInt(request.getParameter("seatsReserved")) == possibleSeatsLeft){
                 aTravel.setState(1);
                 travelService.updateTravel(aTravel);
             }

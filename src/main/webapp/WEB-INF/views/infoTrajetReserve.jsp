@@ -43,10 +43,10 @@
 </header>
 <jsp:include page="footer.jsp"/>
 <script type="text/javascript">
-    $("#modifyBtn").click(function() {
+    $("#modifyTravelBtn").click(function() {
         $("#smoke").attr('disabled', !$("#smoke").attr('disabled'));
         $("#luggage").attr('disabled', !$("#luggage").attr('disabled'));
-        $("#validateBtn").show();
+        $("#validateTravelBtn").show();
     });
 </script>
 </body>

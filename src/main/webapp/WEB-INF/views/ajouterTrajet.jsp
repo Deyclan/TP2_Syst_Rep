@@ -54,7 +54,7 @@
                                     <div class="col">
                                         <div class="md-form">
                                             <label for="priceTravel" class="active white-text"> Prix par personne </label>
-                                            <INPUT type="number" step="0.01" min="5.00" max="5.00" class="form-control text-info" name="priceTravel" value="5,00" id="priceTravel">
+                                            <INPUT type="number" step="0.01" min="5.00" max="5.00" class="form-control text-info" name="priceTravel" value="5.00" id="priceTravel">
                                         </div>
                                     </div>
                                     <div class="col">

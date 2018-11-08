@@ -33,9 +33,9 @@
                         <h4 class="text-uppercase mb-4 white-text"> Date : ${travel.date}</h4>
                         <h4 class="text-uppercase mb-4 white-text"> Autorisation de fumer : <input type="checkbox" name="smoke" id="smoke" class="form-check-input border-white" disabled="disabled" ${(travel.smoke == 0)? "" : "checked"}> <br>
                             Bagage autorisé : <input type="checkbox" class="form-check-input border-white" name="luggage" id="luggage" disabled="disabled" ${(travel.luggage == 0)? "" : "checked"}></h4>
-                        <h4 class="text-uppercase mb-4 white-text"> Personnes ayant réservé : ${user.firstname}</h4>
+                        <h4 class="text-uppercase mb-4 white-text"> Personnes ayant réservé : ${reservers}</h4>
                         <h4 class="text-uppercase mb-4 white-text"> Nombre de places restantes : ${seats}</h4>
-                        <input class="btn btn-info" type="button" id="modifyTravelBtn" value="Modifier les informations" />
+                        <input ${hidden} class="btn btn-info" type="button" id="modifyTravelBtn" value="Modifier les informations" />
                         <button class="btn btn-info" type="submit" style="display: none;" name="validateTravelBtn" id="validateTravelBtn" value="${travel.id}">Valider les modifications</button>
                     </div>
                     </form>
@@ -46,10 +46,10 @@
 </header>
 <jsp:include page="footer.jsp"/>
 <script type="text/javascript">
-    $("#modifyBtn").click(function() {
+    $("#modifyTravelBtn").click(function() {
         $("#smoke").attr('disabled', !$("#smoke").attr('disabled'));
         $("#luggage").attr('disabled', !$("#luggage").attr('disabled'));
-        $("#validateBtn").show();
+        $("#validateTravelBtn").show();
     });
 </script>
 </body>

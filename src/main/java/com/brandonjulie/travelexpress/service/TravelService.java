@@ -22,12 +22,12 @@ public class TravelService extends EntityService {
     public List<TravelEntity> getTravels(String from, String to){
         List<TravelEntity> travelEntities = null;
         try {
-            EntityTransaction transaction = startTransaction();
-            transaction.begin();
+            startTransaction();
+            begin();
             String fromAdress = new StringBuilder().append("%").append(from).append("%").toString();
             String toAdress = new StringBuilder().append("%").append(to).append("%").toString();
             travelEntities = (List<TravelEntity>) entityManager.createQuery("select t from TravelEntity t where t.fromAdress like '"+fromAdress+"' and t.toAdress like '"+ toAdress+"'").getResultList();
-            entityManager.close();
+            close();
         }catch (Exception e){
             e.printStackTrace();
         }

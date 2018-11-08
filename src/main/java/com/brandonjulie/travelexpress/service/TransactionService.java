@@ -21,7 +21,7 @@ public class TransactionService extends EntityService {
         TransactionEntity travelEntity = null;
         try {
             startTransaction();
-            transaction.begin();
+            begin();
             travelEntity = entityManager.find(TransactionEntity.class, idTransaction);
             entityManager.close();
         } catch (Exception e) {

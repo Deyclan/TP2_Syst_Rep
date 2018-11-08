@@ -34,9 +34,11 @@
                         <h4 class="text-uppercase mb-4 white-text"> Autorisation de fumer : ${(travel.smoke == 0)? "Non" : "Oui"} <br> Bagage
                         autorisé : ${(travel.luggage == 0)? "Non" : "Oui"}</h4>
                         <h4 class="text-uppercase mb-4 white-text"> Nombre de places restantes : ${seats}</h4>
+                        <form method="post">
                         <label for="seatsReserved" class="active white-text"> Nombre de places que vous souhaitez réserver </label>
-                        <input class="text-info" type="number" max="${seats}" id="seatsReserved">
+                        <input class="text-info" type="number" max="${seats}" min="0" id="seatsReserved" name="seatsReserved">
                         <button class="btn btn-info" formaction="insererReservation" type="submit" name="payBtn" value="${travel.id}" id="payBtn"> Payer </button>
+                        </form>
                     </div>
                 </div>
             </div>

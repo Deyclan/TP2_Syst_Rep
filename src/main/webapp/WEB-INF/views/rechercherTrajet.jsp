@@ -10,6 +10,22 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
     <link rel="stylesheet" href="resources/css/mdb.min.css">
     <link rel="stylesheet" href="resources/css/myCSS.css">
+    <script type="text/javascript">
+        window.onload=function () {
+            var todaysDate = new Date(); // Gets today's date
+
+            // Max date attribute is in "YYYY-MM-DD".  Need to format today's date accordingly
+
+            var year = todaysDate.getFullYear(); 						// YYYY
+            var month = ("0" + (todaysDate.getMonth() + 1)).slice(-2);	// MM
+            var day = ("0" + todaysDate.getDate()).slice(-2);			// DD
+
+            var minDate = (year +"-"+ month +"-"+ day); // Results in "YYYY-MM-DD" for today's date
+
+            // Now to set the max date value for the calendar to be today's date
+            document.getElementById("dateTravel").setAttribute("min", minDate);
+        }
+    </script>
     <title>Rechercher un trajet</title>
 </head>
 

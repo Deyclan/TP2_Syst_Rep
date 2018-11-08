@@ -1,11 +1,10 @@
 package com.brandonjulie.travelexpress.controller;
 
+import com.brandonjulie.travelexpress.entities.ReservationEntity;
+import com.brandonjulie.travelexpress.entities.TransactionEntity;
 import com.brandonjulie.travelexpress.entities.TravelEntity;
 import com.brandonjulie.travelexpress.entities.UserEntity;
-import com.brandonjulie.travelexpress.service.ConnectionService;
-import com.brandonjulie.travelexpress.service.ReservationService;
-import com.brandonjulie.travelexpress.service.TravelService;
-import com.brandonjulie.travelexpress.service.UserService;
+import com.brandonjulie.travelexpress.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +24,7 @@ public class SessionController {
     ReservationService reservationService = new ReservationService();
     TravelService travelService = new TravelService();
     UserService userService = new UserService();
+    TransactionService transactionService = new TransactionService();
 
 
         /*------------------------------------------ CONNEXION ------------------------------------------*/
@@ -114,15 +115,34 @@ public class SessionController {
 
     @RequestMapping(value = "infoTrajetPropose", method = RequestMethod.POST)
     public ModelAndView showProposedTravels(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        TravelEntity travelEntity = travelService.getTravelByID((Integer) request.getAttribute("infoProposedBtn"));
+        TravelEntity travelEntity = travelService.getTravelByID(Integer.parseInt(request.getParameter("infoProposedBtn")));
         request.setAttribute("travel", travelEntity);
-        request.setAttribute("user", travelEntity.getUserByIdOfferer());
+        List<ReservationEntity> reservationEntities = reservationService.getReservationsByTravelID(travelEntity.getId());
+        StringBuilder stringBuilder = new StringBuilder("");
+        int numberOfSeatsReserved = 0;
+        for (ReservationEntity reservationEntity: reservationEntities) {
+            UserEntity userEntity = userService.getUserById(reservationEntity.getIdReserver());
+            stringBuilder.append(userEntity.getFirstname());
+            stringBuilder.append(" ");
+            TransactionEntity transactionEntity = transactionService.getTransactionByID(reservationEntity.getIdTransaction());
+            numberOfSeatsReserved+= transactionEntity.getAmont().divide(BigDecimal.valueOf(5)).intValueExact();
+        }
+        request.setAttribute("reservers", stringBuilder.toString());
+        if(travelEntity.getState()==1){
+            request.setAttribute("seats", "aucune");
+        } else {
+            request.setAttribute("seats", travelEntity.getSeatsNumber() - numberOfSeatsReserved);
+            if(travelEntity.getState()==2){
+                request.setAttribute("hidden", "hidden");
+            }
+        }
+
         return new ModelAndView("infoTrajetPropose");
     }
 
     @RequestMapping(value ="updateProposedTravel", method = RequestMethod.POST)
     public ModelAndView updateProposedTravel(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        TravelEntity travelEntity = travelService.getTravelByID((Integer) request.getAttribute("validateTravelBtn"));
+        TravelEntity travelEntity = travelService.getTravelByID(Integer.parseInt(request.getParameter("validateTravelBtn")));
         if (request.getParameter("luggage") != null) {
             travelEntity.setLuggage((byte) 1);
         } else { travelEntity.setLuggage((byte) 0); }
@@ -135,7 +155,7 @@ public class SessionController {
 
     @RequestMapping(value = "infoTrajetReserve", method = RequestMethod.POST)
     public ModelAndView showReservedTravels(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        TravelEntity travelEntity = travelService.getTravelByID((Integer) request.getAttribute("infoReservedBtn"));
+        TravelEntity travelEntity = travelService.getTravelByID(Integer.parseInt(request.getParameter("infoReservedBtn")));
         request.setAttribute("travel", travelEntity);
         return new ModelAndView("infoTrajetReserve");
     }

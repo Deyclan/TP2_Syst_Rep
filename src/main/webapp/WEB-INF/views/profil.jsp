@@ -47,9 +47,11 @@
                         <c:choose>
                             <c:when test="${fn:length(travelsProposed) >0}">
                             <c:forEach items="${travelsProposed}" var="travel">
+                            <form method="post">
                                 <h4 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong> ${travel.date} ${travel.fromAdress} ${travel.toAdress} ${travel.cost}</strong>
-                                    <button class="btn btn-info btn-xs" type="submit" name="infoProposedBtn" id="infoProposedBtn" formaction="infoTrajetPropose" value="${travel.id}">Infos</button>
+                                        <button class="btn btn-info btn-xs" type="submit" name="infoProposedBtn" id="infoProposedBtn" formaction="infoTrajetPropose" value="${travel.id}">Infos</button>
                                 </h4>
+                            </form>
                             </c:forEach>
                             </c:when>
                             <c:otherwise>
