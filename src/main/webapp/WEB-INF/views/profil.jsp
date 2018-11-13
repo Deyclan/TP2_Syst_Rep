@@ -34,7 +34,9 @@
                             <h4 class="text-uppercase mb-4 white-text"> Nom : ${user.firstname}  ${user.name}</h4>
                             <h4 class="text-uppercase mb-4 white-text"> Email : <input name="email" id="email" disabled="disabled" value="${user.email}" required/></h4>
                             <h4 class="text-uppercase mb-4 white-text"> Téléphone : <input name="phone" id="phone" disabled="disabled" value="${user.phone}"/></h4>
-                            <h4 class="text-uppercase mb-4 white-text"> Synthèse des avis reçus : ${user.rating}</h4>
+                            <h4 class="text-uppercase mb-4 white-text"> Synthèse des avis reçus :
+                                <c:choose><c:when test="${user.rating == null || user.rating == ''}">Aucune note</c:when>
+                                <c:otherwise>${user.rating}</c:otherwise></c:choose></h4>
                             <input class="btn btn-info" type="button" id="modifyBtn" value="Modifier les informations personnelles" />
                             <button class="btn btn-info" type="submit" style="display: none;" id="validateBtn">Valider les modifications</button>
                         </div>
